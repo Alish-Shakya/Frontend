@@ -19,6 +19,17 @@ const Navbar = () => {
       <Link to={"/user/create"} style={cssStyle}>
         Creat User
       </Link>
+      <Link to={"/user"} style={cssStyle}>
+        Users
+      </Link>
+
+      <Link to={"/teacher/createTeacher"} style={cssStyle}>
+        Create Teacher
+      </Link>
+
+      <Link to={"/subject/createSubject"} style={cssStyle}>
+        Create Subject
+      </Link>
     </>
   );
 };

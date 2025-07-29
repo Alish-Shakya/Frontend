@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const CreateUser = () => {
   let [fullName, setFullName] = useState("");
@@ -19,7 +20,8 @@ const CreateUser = () => {
         method: "post",
         data: data,
       });
-      console.log(result.data.data);
+      console.log(result);
+      toast.success(result.data.message); // waringi, info
       setFullName("");
       setAge("");
       setAddress("");
@@ -30,6 +32,7 @@ const CreateUser = () => {
   return (
     <>
       <div>
+        <ToastContainer theme="dark" />
         <h2>Create User Form</h2>
         <form onSubmit={handelSubmit}>
           <div>
