@@ -7,6 +7,7 @@ import CreateUser from "../components/User/CreateUser";
 import CreateTeacher from "../components/teacher/createTeacher";
 import CreateSubject from "../components/subject/CreateSubject";
 import ReadSpecificUser from "../components/User/ReadSpecificUser";
+import UpdateUser from "../components/User/UpdateUser";
 const MyRoutes = () => {
   return (
     <>
@@ -20,6 +21,10 @@ const MyRoutes = () => {
             <Route index element={<ReadAllUser />}></Route>
             <Route path="create" element={<CreateUser />}></Route>
             <Route path=":id" element={<ReadSpecificUser />}></Route>
+            <Route path="update" element={<Outlet />}>
+              <Route index element={<div> Update </div>}></Route>
+              <Route path=":id" element={<UpdateUser />}></Route>
+            </Route>
           </Route>
 
           <Route path="teacher" element={<Outlet />}>

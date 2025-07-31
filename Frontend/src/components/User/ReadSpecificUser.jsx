@@ -5,7 +5,8 @@ import { useParams } from "react-router";
 const ReadSpecificUser = () => {
   let [user, setUsers] = useState({});
   let params = useParams();
-  //   console.log(params.id);
+  // console.log(params.id);
+  //params == route ko paramater
 
   let getData = async () => {
     try {

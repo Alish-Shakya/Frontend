@@ -1,6 +1,7 @@
 import axios, { Axios } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const ReadAllUser = () => {
   let [users, setUsers] = useState([]);
@@ -36,23 +37,26 @@ const ReadAllUser = () => {
     }
   };
 
-  // Swal.fire({
-  //   title: "Are you sure?",
-  //   text: "You won't be able to revert this!",
-  //   icon: "warning",
-  //   showCancelButton: true,
-  //   confirmButtonColor: "#3085d6",
-  //   cancelButtonColor: "#d33",
-  //   confirmButtonText: "Yes, delete it!",
-  // }).then((result) => {
-  //   if (result.isConfirmed) {
-  //     Swal.fire({
-  //       title: "Deleted!",
-  //       text: "Your file has been deleted.",
-  //       icon: "success",
-  //     });
-  //   }
-  // });
+  const alertFunction = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed === true) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+        handelDelete(id);
+      }
+    });
+  };
 
   return (
     <div>
@@ -81,13 +85,18 @@ const ReadAllUser = () => {
               view
             </button>
 
-            <button style={{ marginRight: "10px", cursor: "pointer" }}>
+            <button
+              onClick={() => {
+                navigate(`/user/update/${value._id}`);
+              }}
+              style={{ marginRight: "10px", cursor: "pointer" }}
+            >
               Edit
             </button>
             <button
               style={{ marginRight: "10px", cursor: "pointer" }}
               onClick={() => {
-                handelDelete(value._id);
+                alertFunction(value._id);
               }}
             >
               Delete
