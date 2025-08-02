@@ -8,15 +8,23 @@ import CreateTeacher from "../components/teacher/createTeacher";
 import CreateSubject from "../components/subject/CreateSubject";
 import ReadSpecificUser from "../components/User/ReadSpecificUser";
 import UpdateUser from "../components/User/UpdateUser";
+import AdminRegister from "../components/Admin/AdminRegister";
 const MyRoutes = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Outlet />}>
           <Route index element={<Home />}></Route>
+
+          {/* Admin Route */}
+          <Route path="admin" element={<Outlet />}>
+            <Route index element={<div> Admin DashBoard</div>}></Route>
+            <Route path="register" element={<AdminRegister />}></Route>
+          </Route>
           <Route path="about" element={<About />}></Route>
           <Route path="contact" element={<Contact />}></Route>
 
+          {/* User Route */}
           <Route path="user" element={<Outlet />}>
             <Route index element={<ReadAllUser />}></Route>
             <Route path="create" element={<CreateUser />}></Route>
@@ -27,10 +35,12 @@ const MyRoutes = () => {
             </Route>
           </Route>
 
+          {/* teacher Route */}
           <Route path="teacher" element={<Outlet />}>
             <Route path="createTeacher" element={<CreateTeacher />}></Route>
           </Route>
 
+          {/* Subject Route */}
           <Route path="subject" element={<Outlet />}>
             <Route path="createSubject" element={<CreateSubject />}></Route>
           </Route>

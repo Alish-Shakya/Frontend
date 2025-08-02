@@ -1,11 +1,10 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const ReadAllUser = () => {
   let [users, setUsers] = useState([]);
-
   let navigate = useNavigate();
 
   let getUsers = async () => {
@@ -50,7 +49,7 @@ const ReadAllUser = () => {
       if (result.isConfirmed === true) {
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "User has been deleted.",
           icon: "success",
         });
         handelDelete(id);
@@ -59,51 +58,52 @@ const ReadAllUser = () => {
   };
 
   return (
-    <div>
-      {users.map((value, index) => {
-        return (
+    <div className="max-w-6xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
+        All Users
+      </h1>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {users.map((value, index) => (
           <div
             key={index}
-            style={{
-              border: "2px solid black",
-              padding: "20px",
-              margin: "20px",
-            }}
+            className="border border-gray-300 rounded-lg p-6 shadow-md bg-white"
           >
-            <p>Fullname is {value.fullName}</p>
-            <p>Age is {value.age}</p>
-            <p>Address is {value.address}</p>
+            <p className="text-lg font-semibold text-gray-700">
+              Full Name: <span className="font-normal">{value.fullName}</span>
+            </p>
+            <p className="text-lg font-semibold text-gray-700">
+              Age: <span className="font-normal">{value.age}</span>
+            </p>
+            <p className="text-lg font-semibold text-gray-700">
+              Address: <span className="font-normal">{value.address}</span>
+            </p>
 
-            <br />
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+                onClick={() => navigate(`/user/${value._id}`)}
+              >
+                View
+              </button>
 
-            <button
-              style={{ marginRight: "10px", cursor: "pointer" }}
-              onClick={() => {
-                navigate(`/user/${value._id}`);
-              }}
-            >
-              view
-            </button>
+              <button
+                className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+                onClick={() => navigate(`/user/update/${value._id}`)}
+              >
+                Edit
+              </button>
 
-            <button
-              onClick={() => {
-                navigate(`/user/update/${value._id}`);
-              }}
-              style={{ marginRight: "10px", cursor: "pointer" }}
-            >
-              Edit
-            </button>
-            <button
-              style={{ marginRight: "10px", cursor: "pointer" }}
-              onClick={() => {
-                alertFunction(value._id);
-              }}
-            >
-              Delete
-            </button>
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                onClick={() => alertFunction(value._id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };
