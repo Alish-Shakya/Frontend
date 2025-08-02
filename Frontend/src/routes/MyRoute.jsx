@@ -4,11 +4,12 @@ import About from "../components/About";
 import Contact from "../components/Contact";
 import ReadAllUser from "../components/User/ReadAllUser";
 import CreateUser from "../components/User/CreateUser";
-import CreateTeacher from "../components/teacher/createTeacher";
+import CreateTeacher from "../components/teacher/CreateTeacher";
 import CreateSubject from "../components/subject/CreateSubject";
 import ReadSpecificUser from "../components/User/ReadSpecificUser";
 import UpdateUser from "../components/User/UpdateUser";
 import AdminRegister from "../components/Admin/AdminRegister";
+import ReadAllTeacher from "../components/teacher/ReadAllTeacher";
 const MyRoutes = () => {
   return (
     <>
@@ -37,6 +38,7 @@ const MyRoutes = () => {
 
           {/* teacher Route */}
           <Route path="teacher" element={<Outlet />}>
+            <Route index element={<ReadAllTeacher />}></Route>
             <Route path="createTeacher" element={<CreateTeacher />}></Route>
           </Route>
 
