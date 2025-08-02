@@ -10,6 +10,7 @@ import ReadSpecificUser from "../components/User/ReadSpecificUser";
 import UpdateUser from "../components/User/UpdateUser";
 import AdminRegister from "../components/Admin/AdminRegister";
 import ReadAllTeacher from "../components/teacher/ReadAllTeacher";
+import ReadSpecificTeacher from "../components/teacher/ReadSpecificTeacher";
 const MyRoutes = () => {
   return (
     <>
@@ -40,6 +41,7 @@ const MyRoutes = () => {
           <Route path="teacher" element={<Outlet />}>
             <Route index element={<ReadAllTeacher />}></Route>
             <Route path="createTeacher" element={<CreateTeacher />}></Route>
+            <Route path=":id" element={<ReadSpecificTeacher />}></Route>
           </Route>
 
           {/* Subject Route */}

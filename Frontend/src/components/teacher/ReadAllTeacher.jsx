@@ -39,6 +39,23 @@ const ReadAllTeacher = () => {
           <p>Age is {value.age}</p>
           <p>dob is {value.dob}</p>
           <p>address is {value.address}</p>
+
+          <div className="">
+            <button
+              onClick={() => nagivate(`/teacher/${value._id}`)}
+              className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer"
+            >
+              View
+            </button>
+
+            <button className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer">
+              Edit
+            </button>
+
+            <button className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer">
+              Delete
+            </button>
+          </div>
         </div>
       ))}
     </div>
