@@ -11,12 +11,16 @@ import UpdateUser from "../components/User/UpdateUser";
 import AdminRegister from "../components/Admin/AdminRegister";
 import ReadAllTeacher from "../components/teacher/ReadAllTeacher";
 import ReadSpecificTeacher from "../components/teacher/ReadSpecificTeacher";
+import UpdateTeacher from "../components/teacher/UpdateTeacher";
+import AdminVerify from "../components/Admin/AdminVerify";
 const MyRoutes = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Outlet />}>
           <Route index element={<Home />}></Route>
+
+          <Route path="verify-email" element={<AdminVerify />}></Route>
 
           {/* Admin Route */}
           <Route path="admin" element={<Outlet />}>
@@ -42,6 +46,10 @@ const MyRoutes = () => {
             <Route index element={<ReadAllTeacher />}></Route>
             <Route path="createTeacher" element={<CreateTeacher />}></Route>
             <Route path=":id" element={<ReadSpecificTeacher />}></Route>
+            <Route path="update" element={<Outlet />}>
+              <Route index element={<div> Update </div>}></Route>
+              <Route path=":id" element={<UpdateTeacher />}></Route>
+            </Route>
           </Route>
 
           {/* Subject Route */}

@@ -4,15 +4,14 @@ import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
 
 const ReadAllTeacher = () => {
-  let [teachers, setTeachers] = useState([]);
-  const nagivate = useNavigate();
+  const [teachers, setTeachers] = useState([]);
+  const navigate = useNavigate(); // fixed typo
 
   const getTeachers = async () => {
     try {
       const data = await axios.get(
         "http://localhost:3000/teacher/getAllTeacher"
       );
-
       setTeachers(data.data.data);
     } catch (error) {
       console.log(error);
@@ -25,11 +24,11 @@ const ReadAllTeacher = () => {
 
   const handleDelete = async (id) => {
     try {
-      let data = await axios.delete(
+      const data = await axios.delete(
         `http://localhost:3000/teacher/deleteTeacher/${id}`
       );
       console.log(data);
-      getTeachers();
+      getTeachers(); // refresh list after deletion
     } catch (error) {
       console.log(error);
     }
@@ -46,53 +45,63 @@ const ReadAllTeacher = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("Deleted!", "The teacher has been deleted.", "success");
         handleDelete(id);
       }
     });
   };
 
   return (
-    <div>
-      <h1 className="text-4xl font-extralight justify-center m-10">
-        All Teachers
-      </h1>
-      {teachers.map((value) => (
-        <div
-          key={value._id}
-          style={{
-            border: "2px solid black",
-            padding: "20px",
-            margin: "20px",
-          }}
-        >
-          <p>Fullname is {value.fullName}</p>
-          <p>subject is {value.subject}</p>
-          <p>Age is {value.age}</p>
-          <p>dob is {value.dob}</p>
-          <p>address is {value.address}</p>
+    <div className="max-w-5xl mx-auto py-10 px-4">
+      <h1 className="text-4xl font-semibold text-center mb-10">All Teachers</h1>
+      <div className="grid gap-6">
+        {teachers.map((value) => (
+          <div
+            key={value._id}
+            className="border-2 border-gray-300 rounded-xl p-6 shadow hover:shadow-lg transition"
+          >
+            <p>
+              <span className="font-semibold">Full Name:</span> {value.fullName}
+            </p>
+            <p>
+              <span className="font-semibold">Subject:</span> {value.subject}
+            </p>
+            <p>
+              <span className="font-semibold">Age:</span> {value.age}
+            </p>
+            <p>
+              <span className="font-semibold">DOB:</span> {value.dob}
+            </p>
+            <p>
+              <span className="font-semibold">Address:</span> {value.address}
+            </p>
 
-          <div className="">
-            <button
-              onClick={() => nagivate(`/teacher/${value._id}`)}
-              className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer"
-            >
-              View
-            </button>
+            <div className="mt-4 flex gap-4 flex-wrap">
+              <button
+                onClick={() => navigate(`/teacher/${value._id}`)}
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              >
+                View
+              </button>
 
-            <button className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer">
-              Edit
-            </button>
+              <button
+                onClick={() => navigate(`/teacher/update/${value._id}`)}
+                className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+              >
+                Edit
+              </button>
 
-            <button
-              className="border rounded-2xl px-3 mr-5 mt-3 hover:bg-amber-50 cursor-pointer"
-              onClick={() => alertDelete(value._id)}
-            >
-              Delete
-            </button>
+              <button
+                onClick={() => alertDelete(value._id)}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      e
     </div>
   );
 };

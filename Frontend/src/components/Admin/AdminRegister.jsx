@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const AdminRegister = () => {
@@ -33,6 +33,7 @@ const AdminRegister = () => {
         method: "post",
         data: data,
       });
+      setFullName("");
       console.log(result);
     } catch (error) {
       console.log(error);

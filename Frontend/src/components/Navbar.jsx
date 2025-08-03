@@ -2,15 +2,12 @@ import React from "react";
 import { Link } from "react-router";
 const Navbar = () => {
   return (
-    <div className="hidden">
+    <div className="">
       <Link to={"/"}>Home</Link>
 
       <Link to={"/about"}>About</Link>
 
       <Link to={"/contact"}>Contact</Link>
-
-      <Link to={"/teacher/createTeacher"}>Create Teacher</Link>
-      <Link to={"/teacher"}>Teacher</Link>
 
       <Link to={"/subject/createSubject"}>Create Subject</Link>
 
