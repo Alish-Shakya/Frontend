@@ -13,6 +13,8 @@ import ReadAllTeacher from "../components/teacher/ReadAllTeacher";
 import ReadSpecificTeacher from "../components/teacher/ReadSpecificTeacher";
 import UpdateTeacher from "../components/teacher/UpdateTeacher";
 import AdminVerify from "../components/Admin/AdminVerify";
+import ReadAllSubject from "../components/subject/ReadAllSubject";
+import AdminLogin from "../components/Admin/AdminLogin";
 const MyRoutes = () => {
   return (
     <>
@@ -26,6 +28,7 @@ const MyRoutes = () => {
           <Route path="admin" element={<Outlet />}>
             <Route index element={<div> Admin DashBoard</div>}></Route>
             <Route path="register" element={<AdminRegister />}></Route>
+            <Route path="login" element={<AdminLogin />}></Route>
           </Route>
           <Route path="about" element={<About />}></Route>
           <Route path="contact" element={<Contact />}></Route>
@@ -54,6 +57,7 @@ const MyRoutes = () => {
 
           {/* Subject Route */}
           <Route path="subject" element={<Outlet />}>
+            <Route index element={<ReadAllSubject />}></Route>
             <Route path="createSubject" element={<CreateSubject />}></Route>
           </Route>
         </Route>

@@ -9,9 +9,9 @@ const Navbar = () => {
 
       <Link to={"/contact"}>Contact</Link>
 
-      <Link to={"/subject/createSubject"}>Create Subject</Link>
-
       <Link to={"/admin/register"}>Admin register</Link>
+
+      <Link to={"/admin/login"}> Admin login</Link>
     </div>
   );
 };

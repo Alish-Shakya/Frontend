@@ -29,7 +29,7 @@ const AdminRegister = () => {
     };
     try {
       let result = await axios({
-        url: "http://localhost:3000/webuser/register",
+        url: "http://localhost:3000/webUser/register",
         method: "post",
         data: data,
       });
