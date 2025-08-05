@@ -22,7 +22,7 @@ const CreateUser = () => {
         data: data,
       });
       console.log(result);
-      toast.success(result.data.message); // waringi, info
+      toast.success(result.data.message); // waringi, info haru pani rakhna milxa
       setFullName("");
       setAge("");
       setAddress("");

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router";
 const AdminLogin = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -96,7 +97,7 @@ const AdminLogin = () => {
                 Forgot Password?
               </button>
               <button type="button" className="text-blue-600 hover:underline">
-                Create Account
+                <Link to={"/admin/register"}> Create Account</Link>
               </button>
             </div>
           </form>
