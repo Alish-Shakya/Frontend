@@ -94,8 +94,9 @@ const AdminLogin = () => {
 
             <div className="flex justify-between items-center mt-4 text-sm">
               <button type="button" className="text-blue-600 hover:underline">
-                Forgot Password?
+                <Link to={"/admin/forgot-password"}>Forgot Password</Link>
               </button>
+
               <button type="button" className="text-blue-600 hover:underline">
                 <Link to={"/admin/register"}> Create Account</Link>
               </button>

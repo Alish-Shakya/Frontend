@@ -104,6 +104,7 @@ import CreateStudent from "../components/student/CreateStudent";
 import MyProfile from "../components/Admin/MyProfile";
 import AdminLogout from "../components/Admin/AdminLogout";
 import UpdateProfile from "../components/Admin/UpdateProfile";
+import ForgotPassword from "../components/Admin/ForgotPassword";
 
 const MyRoutes = () => {
   return (
@@ -121,6 +122,7 @@ const MyRoutes = () => {
           <Route path="my-profile" element={<MyProfile />} />
           <Route path="logout" element={<AdminLogout />} />
           <Route path="profile-update" element={<UpdateProfile />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
         </Route>
 
         <Route path="about" element={<About />} />
