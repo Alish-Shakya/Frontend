@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import UserForm from "./User/UserForm";
 import TeacherForm from "./teacher/TeacherForm";
 import SubjectForm from "./subject/subjectForm";
+import StudentForm from "./student/StudentForm";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <UserForm />
         <TeacherForm />
         <SubjectForm />
+        <StudentForm />
       </div>
     </div>
   );
