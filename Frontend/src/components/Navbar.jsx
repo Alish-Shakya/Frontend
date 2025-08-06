@@ -5,15 +5,20 @@ export default function Navbar() {
     <div className="flex flex-col md:flex-row justify-between items-center bg-gray-100 px-6 py-4 shadow-md">
       {/* Left Links */}
       <div className="flex space-x-6 mb-2 md:mb-0">
-        <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium">
+        <Link
+          to="/home"
+          className="text-gray-700 hover:text-blue-600 font-medium"
+        >
           Home
         </Link>
+
         <Link
           to="/about"
           className="text-gray-700 hover:text-blue-600 font-medium"
         >
           About
         </Link>
+
         <Link
           to="/contact"
           className="text-gray-700 hover:text-blue-600 font-medium"

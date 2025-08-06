@@ -54,15 +54,21 @@ const MyProfile = () => {
           </p>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex gap-4">
           <button
             className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
             onClick={() => navigate("/admin/profile-update")}
           >
             Update Profile
           </button>
-
-          <button>reset password </button>
+          <button
+            className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300"
+            onClick={() => {
+              navigate("/admin/update-password");
+            }}
+          >
+            Update Password
+          </button>
         </div>
       </div>
     </div>

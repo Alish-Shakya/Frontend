@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const UpdateProfile = () => {
   const [fullName, setFullName] = useState("");
   const [isMarried, setISMarried] = useState(false);
   const [contactNo, setContactNo] = useState(0);
+
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
 
@@ -33,6 +37,7 @@ const UpdateProfile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = {
       fullName: fullName,
       isMarried: isMarried,
@@ -49,6 +54,16 @@ const UpdateProfile = () => {
         data: data,
       });
       console.log(result);
+
+      Swal.fire({
+        icon: "success",
+        title: "Profile Updated!",
+        text: "Your profile has been successfully updated.",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/admin/my-profile");
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -103,8 +118,8 @@ const UpdateProfile = () => {
             </label>
             <input
               type="number"
-              name="contact"
-              id="contact"
+              name="contactNo"
+              id="contactNo"
               value={contactNo}
               onChange={(e) => setContactNo(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

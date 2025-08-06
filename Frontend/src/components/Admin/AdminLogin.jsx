@@ -6,15 +6,30 @@ const AdminLogin = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
 
-  let navigate = useNavigate();
+  let [errorMessage, setErrorMessage] = useState();
 
+  let navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setErrorMessage("Please fill in all fields!");
+
+      // Clear after 5 seconds
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+
+      return;
+    }
+
+    setErrorMessage("");
 
     let data = {
       email: email,
       password: password,
     };
+
     try {
       let result = await axios({
         url: "http://localhost:3000/webUser/login",
@@ -26,6 +41,12 @@ const AdminLogin = () => {
       navigate("/home");
     } catch (error) {
       console.log(error);
+      setErrorMessage("Invalid email or password!");
+
+      // Clear after 5 seconds
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 2000);
     }
   };
 
@@ -82,6 +103,12 @@ const AdminLogin = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
+
+            {errorMessage && (
+              <div className="mb-4 text-red-600 text-sm font-medium">
+                {errorMessage}
+              </div>
+            )}
 
             <div>
               <button
