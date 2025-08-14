@@ -41,6 +41,8 @@ export default function Navbar() {
         >
           Logout
         </Link>
+
+        <Link to={"/read-all"}> Read All Users</Link>
       </div>
     </div>
   );

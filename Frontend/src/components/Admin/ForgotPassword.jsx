@@ -1,71 +1,49 @@
-import React, { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  let [email, setEmail] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let data = {
+      email: email,
+    };
+
     try {
-      const result = await axios.post(
-        "http://localhost:3000/webuser/forgot-password",
-        {
-          email,
-        }
-      );
-      setMessage(
-        result.data.message || "Password reset link sent! Check your email."
-      );
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Something went wrong.");
-    }
+      let result = await axios({
+        url: `http://localhost:3000/webUser/forgot-password`,
+        method: "POST",
+        data: data,
+      });
+      toast.success(result.data.message);
+      setEmail("");
+    } catch (error) {}
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
-          Forgot Password
-        </h2>
-
-        <p className="mb-6 text-center text-gray-600">
-          Enter your email to reset your password
-        </p>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="email"
-              className="block mb-2 text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="your-email@example.com"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md font-semibold transition-colors"
-          >
-            Submit
-          </button>
-        </form>
-
-        {message && (
-          <p className="mt-6 text-center font-medium text-blue-600">
-            {message}
-          </p>
-        )}
-      </div>
+    <div>
+      <ToastContainer />
+      <form onSubmit={handleSubmit}>
+        <br />
+        <div>
+          <label htmlFor="email">Email : </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </div>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };

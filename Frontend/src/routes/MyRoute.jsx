@@ -107,6 +107,7 @@ import UpdateProfile from "../components/Admin/UpdateProfile";
 import ForgotPassword from "../components/Admin/ForgotPassword";
 import UpdatePassword from "../components/Admin/UpdatePassword";
 import ResetPassword from "../components/Admin/ResetPassword";
+import AllUsers from "../components/Admin/AllUsers";
 
 const MyRoutes = () => {
   return (
@@ -115,6 +116,8 @@ const MyRoutes = () => {
         <Route path="/" element={<AdminLogin />} />
         <Route path="/verify-email" element={<AdminVerify />} />
         <Route path="/home" element={<Home />} />
+        <Route path="reset-password" element={<ResetPassword />} />
+        <Route path="read-all" element={<AllUsers />} />
 
         {/* Admin Routes */}
         <Route path="admin" element={<Outlet />}>
@@ -126,7 +129,6 @@ const MyRoutes = () => {
           <Route path="profile-update" element={<UpdateProfile />} />
           <Route path="update-password" element={<UpdatePassword />}></Route>
           <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
         </Route>
 
         <Route path="about" element={<About />} />
